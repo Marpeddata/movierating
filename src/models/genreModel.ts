@@ -8,8 +8,7 @@ const genreSchema = new mongoose.Schema<Genre>(
       required: true,
     },
     movies: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Movie",
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
     },
   },
   {

@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import movieModel from "../models/movieModel";
 import reviewModel from "../models/reviewModel";
+import genreModel from "../models/genreModel";
 
 export default {
   movies: async () => {
@@ -21,5 +22,15 @@ export default {
   review: async (_: any, { id }: ObjectId) => {
     const review = await reviewModel.findById(id).populate("movies");
     return review;
+  },
+
+  genres: async () => {
+    const genres = await genreModel.find().populate("genres");
+    return genres;
+  },
+
+  genre: async (_: any, { id }: ObjectId) => {
+    const genre = await genreModel.findById(id).populate("genres");
+    return genre;
   },
 };
