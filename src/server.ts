@@ -10,14 +10,14 @@ import http from "http";
 import Query from "./resolvers/Query";
 import Mutation from "./resolvers/mutation";
 import typeDefs from "./schema";
-import RecipeModel from "./models/recipeModel";
-import CategoryModel from "./models/categoryModel";
-import IngredientModel from "./models/ingredientModel";
+import MovieModel from "./models/movieModel";
+import GenreModel from "./models/genreModel";
+import ReviewModel from "./models/reviewModel";
 
 // interface MyContext {
-//   recipes: typeof RecipeModel;
-//   ingredients: typeof IngredientModel;
-//   categories: typeof CategoryModel;
+//   movies: typeof MovieModel;
+//   reviews: typeof ReviewModel;
+//   genres: typeof GenreModel;
 // }
 
 const DB = process.env.DB_CONNECTION_STRING!;
@@ -43,7 +43,7 @@ app.use(
   cors<cors.CorsRequest>(),
   express.json(),
   expressMiddleware(server, {
-    context: async () => ({ RecipeModel, CategoryModel, IngredientModel }),
+    context: async () => ({ MovieModel, GenreModel, ReviewModel }),
   })
 );
 

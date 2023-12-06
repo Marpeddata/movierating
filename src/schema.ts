@@ -1,43 +1,45 @@
 const typeDefs = `#graphql
-type Recipe {
-        id: ID!
-        name: String!
-        description : String!
-        category: Category
-        ingredients: [Ingredient!] 
 
+    type Movie {
+        id: ID!
+        title: String!
+        year: Int!
+        director: String!
+        description: String!
+        actors: [String!]!
+        genre: Genre!
+        reviews: [Review]
     }
 
-type Ingredient {
+    type Review {
         id: ID!
-        name: String!
-        recipes: [Recipe!] 
-    } 
+        rating: Int!
+        date: String!
+        text: String!
+        movie: Movie!
+    }
+
+    type Genre {
+         id: ID!
+         type: String!
+         movies: [Movie]
+    }
     
-type Category {
-    id: ID!
-    name: String!
-    recipes: [Recipe!] 
-    }
-
     
 type Query {
-    hello: String
-    recipes: [Recipe!]!
-    categories: [Category!]!
-    ingredients: [Ingredient!]!
-    recipe(id: ID!): Recipe
-    ingredient(id: ID!): Ingredient
-    category(id: ID!): Category
-
+    movies: [Movie!]!
+    genres: [Genre!]!
+    reviews: [Review!]!
+    movie(id: ID!): Movie
+    review(id: ID!): Review
+    genre(id: ID!): Genre
     }
 
 type Mutation {
-    createRecipe(name: String!, description: String!, ingredients: [ID!]): Recipe
-    createIngredient(name: String!): Ingredient
-    deleteRecipe(id: ID!): Boolean
+    createMovie(title: String!, year: Int!, director: String!, description: String!, actors: [String!]!, genre: ID!): Movie
+    createReview(id: ID!, rating: Int!, date: String!, text: String!, movie: ID!): Review
+    deleteMovie(id: ID!): Boolean
 }
-
 `;
 
 export default typeDefs;

@@ -1,25 +1,28 @@
 import { ObjectId } from "mongodb";
 
-type Recipe = {
-    id: ObjectId;
-    name: string;
-    description: string;
-    ingredients: ObjectId[];
-    category: ObjectId;
-}
+type Movie = {
+  id: ObjectId;
+  title: string;
+  year: number;
+  director: string;
+  description: string;
+  actors: string[];
+  genre: ObjectId;
+  reviews: ObjectId[];
+};
 
-type Ingredient = {
-    id: string;
-    name: string;
-    recipes: ObjectId[];
-}
+type Review = {
+  id: string;
+  rating: string;
+  date: Date;
+  text: string;
+  movie: ObjectId[];
+};
 
-type Category = {
-    id: string;
-    name: string;
-    recipes: ObjectId[];
-}
+type Genre = {
+  id: ObjectId;
+  type: string;
+  movies: ObjectId[];
+};
 
-
-
-export type { Recipe, Ingredient, Category };
+export type { Movie, Review, Genre };

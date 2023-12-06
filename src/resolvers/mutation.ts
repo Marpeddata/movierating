@@ -1,56 +1,59 @@
-import {Recipe, Ingredient} from '../types';
+import { Movie, Review } from "../types";
 import { ObjectId } from "mongodb";
-import RecipeModel from '../models/recipeModel';
-import IngredientModel from '../models/ingredientModel';
+import MovieModel from "../models/movieModel";
+import ReviewModel from "../models/reviewModel";
+import GenreModel from "../models/genreModel";
 
 export default {
-    createRecipe: async (_parrent:any, args:Recipe) => {
-        console.log(args);
-         const newRecipe = new RecipeModel({
-            id: new ObjectId(),
-            name: args.name,
-            description: args.description,
-            ingredients: args.ingredients,
+  createMovie: async (_parent: any, args: Movie) => {
+    console.log(args);
+    const newMovie = new MovieModel({
+      id: new ObjectId(),
+      title: args.title,
+      year: args.year,
+      director: args.director,
+      description: args.description,
+      actors: args.actors,
+      genre: args.genre,
+      reviews: [],
+    });
+    console.log(newMovie);
+
+    const gen = await GenreModel.findOne({ _id: args.genre });
+    gen?.movies.push(newMovie.id);
+    gen?.save();
+
+    await newMovie.save();
+    return newMovie.populate("genre");
+  },
+  createReview: async (_parent: any, args: Review) => {
+    console.log(args);
+    const newReview = new ReviewModel({
+      rating: args.rating,
+      date: args.date,
+      text: args.text,
+      movie: args.movie,
+    });
+    console.log(newReview);
+    await newReview.save();
+    return newReview.populate("movies");
+  },
+
+  deleteMovie: async (_: any, { id }: ObjectId) => {
+    if (await MovieModel.findById(id)) {
+      const movie = await MovieModel.findById(id);
+      if (movie?.reviews.length !== -1) {
+        movie?.reviews.forEach(async (review) => {
+          const rev = await ReviewModel.findOne({ _id: review });
+          rev?.movie.splice(rev?.movie.indexOf(movie.id), 1);
+          rev?.save();
         });
-        console.log(newRecipe);
-
-        args.ingredients.forEach(async (ingredient) => {
-            const ing = await IngredientModel.findOne({_id: ingredient});
-            ing?.recipes.push(newRecipe.id);
-            ing?.save();
-        })
-
-        await newRecipe.save();
-        return newRecipe.populate('ingredients');
-    },
-    createIngredient: async (_parrent:any, args:Ingredient) => {
-        console.log(args);
-        const newIngredient = new IngredientModel({
-            name: args.name,
-        });
-        console.log(newIngredient);
-        await newIngredient.save();
-        return newIngredient.populate('recipes');
-    },
-    deleteRecipe: async (_:any, {id}:ObjectId) => {
-
-        if(await RecipeModel.findById(id)){
-        const recipe = await RecipeModel.findById(id);
-        if(recipe?.ingredients.length !== -1){
-        recipe?.ingredients.forEach(async (ingredient) => {
-            const ing = await IngredientModel.findOne({_id: ingredient});
-            ing?.recipes.splice(ing?.recipes.indexOf(recipe.id), 1);
-            ing?.save();
-
-        });
-        } else {
-        
-        }
-        await RecipeModel.findByIdAndDelete(recipe?.id)
-        return true;
-        } else {
-            return false;
-        }
+      } else {
+      }
+      await MovieModel.findByIdAndDelete(movie?.id);
+      return true;
+    } else {
+      return false;
     }
-}
-
+  },
+};

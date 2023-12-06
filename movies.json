@@ -1,17 +1,99 @@
-{"title": "The Shawshank Redemption", "year": 1994, "director": "Frank Darabont", "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", "actors": ["Tim Robbins", "Morgan Freeman"], "genre": "Drama", "reviews": []}
-{"title": "The Godfather", "year": 1972, "director": "Francis Ford Coppola", "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", "actors": ["Marlon Brando", "Al Pacino"], "genre": "Crime", "reviews": []}
-{"title": "Pulp Fiction", "year": 1994, "director": "Quentin Tarantino", "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.", "actors": ["John Travolta", "Samuel L. Jackson"], "genre": "Crime", "reviews": []}
-{"title": "The Dark Knight", "year": 2008, "director": "Christopher Nolan", "description": "When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.", "actors": ["Christian Bale", "Heath Ledger"], "genre": "Action", "reviews": []}
-{"title": "Schindler's List", "year": 1993, "director": "Steven Spielberg", "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.", "actors": ["Liam Neeson", "Ralph Fiennes"], "genre": "Biography", "reviews": []}
-{"title": "Forrest Gump", "year": 1994, "director": "Robert Zemeckis", "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.", "actors": ["Tom Hanks", "Robin Wright"], "genre": "Drama", "reviews": []}
-{"title": "Inception", "year": 2010, "director": "Christopher Nolan", "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.", "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"], "genre": "Action", "reviews": []}
-{"title": "The Matrix", "year": 1999, "director": "The Wachowskis", "description": "A computer programmer discovers that reality as he knows it is a simulation created by machines to subjugate humanity.", "actors": ["Keanu Reeves", "Laurence Fishburne"], "genre": "Sci-Fi", "reviews": []}
-{"title": "The Lord of the Rings: The Fellowship of the Ring", "year": 2001, "director": "Peter Jackson", "description": "A young hobbit, Frodo, who has found the One Ring that belongs to the Dark Lord Sauron, begins his journey to Mount Doom, the only place where it can be destroyed.", "actors": ["Elijah Wood", "Ian McKellen"], "genre": "Adventure", "reviews": []}
-{"title": "Star Wars: Episode IV - A New Hope", "year": 1977, "director": "George Lucas", "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station.", "actors": ["Mark Hamill", "Harrison Ford"], "genre": "Sci-Fi", "reviews": []}
-{"title": "Forrest Gump", "year": 1994, "director": "Robert Zemeckis", "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.", "actors": ["Tom Hanks", "Robin Wright"], "genre": "Drama", "reviews": []}
-{"title": "Inception", "year": 2010, "director": "Christopher Nolan", "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.", "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"], "genre": "Action", "reviews": []}
-{"title": "The Matrix", "year": 1999, "director": "The Wachowskis", "description": "A computer programmer discovers that reality as he knows it is a simulation created by machines to subjugate humanity.", "actors": ["Keanu Reeves", "Laurence Fishburne"], "genre": "Sci-Fi", "reviews": []}
-{"title": "The Lord of the Rings: The Fellowship of the Ring", "year": 2001, "director": "Peter Jackson", "description": "A young hobbit, Frodo, who has found the One Ring that belongs to the Dark Lord Sauron, begins his journey to Mount Doom, the only place where it can be destroyed.", "actors": ["Elijah Wood", "Ian McKellen"], "genre": "Adventure", "reviews": []}
-{"title": "Star Wars: Episode IV - A New Hope", "year": 1977, "director": "George Lucas", "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station.", "actors": ["Mark Hamill", "Harrison Ford"], "genre": "Sci-Fi", "reviews": []}
-{"title": "Forrest Gump", "year": 1994, "director": "Robert Zemeckis", "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.", "actors": ["Tom Hanks", "Robin Wright"], "genre": "Drama", "reviews": []}
-{"title": "Inception", "year": 2010, "director": "Christopher Nolan", "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.", "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"], "genre": "Action", "reviews": []}
+ {
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "actors": ["Tim Robbins", "Morgan Freeman"],
+    "genre": { "ObjectId": "6570777f90499f6cbfb52d5e" },
+    "reviews": []
+  }
+  {
+    "title": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola",
+    "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    "actors": ["Marlon Brando", "Al Pacino"],
+    "genre": { "type": "Crime" },
+    "reviews": []
+  }
+  {
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "director": "Quentin Tarantino",
+    "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "actors": ["John Travolta", "Samuel L. Jackson"],
+    "genre": { "type": "Crime" },
+    "reviews": []
+  }
+  {
+    "title": "The Dark Knight",
+    "year": 2008,
+    "director": "Christopher Nolan",
+    "description": "When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+    "actors": ["Christian Bale", "Heath Ledger"],
+    "genre": { "type": "Action" },
+    "reviews": []
+  }
+  {
+    "title": "Schindler's List",
+    "year": 1993,
+    "director": "Steven Spielberg",
+    "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+    "actors": ["Liam Neeson", "Ralph Fiennes"],
+    "genre": { "type": "Biography" },
+    "reviews": []
+  }
+  {
+    "title": "Forrest Gump",
+    "year": 1994,
+    "director": "Robert Zemeckis",
+    "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+    "actors": ["Tom Hanks", "Robin Wright"],
+    "genre": { "type": "Drama" },
+    "reviews": []
+  }
+  {
+    "title": "Inception",
+    "year": 2010,
+    "director": "Christopher Nolan",
+    "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+    "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
+    "genre": { "type": "Action" },
+    "reviews": []
+  }
+  {
+    "title": "The Matrix",
+    "year": 1999,
+    "director": "The Wachowskis",
+    "description": "A computer programmer discovers that reality as he knows it is a simulation created by machines to subjugate humanity.",
+    "actors": ["Keanu Reeves", "Laurence Fishburne"],
+    "genre": { "type": "Sci-Fi" },
+    "reviews": []
+  }
+  {
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "director": "Peter Jackson",
+    "description": "A young hobbit, Frodo, who has found the One Ring that belongs to the Dark Lord Sauron, begins his journey to Mount Doom, the only place where it can be destroyed.",
+    "actors": ["Elijah Wood", "Ian McKellen"],
+    "genre": { "type": "Adventure" },
+    "reviews": []
+  }
+  {
+    "title": "Star Wars: Episode IV - A New Hope",
+    "year": 1977,
+    "director": "George Lucas",
+    "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station.",
+    "actors": ["Mark Hamill", "Harrison Ford"],
+    "genre": { "type": "Sci-Fi" },
+    "reviews": []
+  }
+{
+    "title": "Forrest Gump",
+    "year": 1994,
+    "director": "Robert Zemeckis",
+    "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+    "actors": ["Tom Hanks", "Robin Wright"],
+    "genre": {"type": "Drama"},
+    "reviews": []
+  }
