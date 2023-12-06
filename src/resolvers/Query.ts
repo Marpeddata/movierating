@@ -25,12 +25,12 @@ export default {
   },
 
   genres: async () => {
-    const genres = await genreModel.find().populate("genres");
+    const genres = await genreModel.find().populate("movies");
     return genres;
   },
 
   genre: async (_: any, { id }: ObjectId) => {
-    const genre = await genreModel.findById(id).populate("genres");
+    const genre = await genreModel.findById(id).populate("movies");
     return genre;
   },
 };
