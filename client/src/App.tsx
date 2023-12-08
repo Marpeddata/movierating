@@ -42,6 +42,7 @@ function App() {
 
   //get all genres
   const [genre, setGenre] = useState<Genre[]>([]);
+  const [chosenGenre, setChosenGenre] = useState<Genre["type"]>("");
 
   const genreQuery = useQuery(GET_ALL_GENRES, {
     onCompleted: (data) => {
@@ -143,12 +144,17 @@ function App() {
 
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Select
+                {chosenGenre ? chosenGenre : "Select Genre"}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 {genre.map((genre: Genre) => (
-                  <Dropdown.Item key={genre.id}>{genre.type}</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => setChosenGenre(genre.type)}
+                    key={genre.id}
+                  >
+                    {genre.type}
+                  </Dropdown.Item>
                 ))}
               </Dropdown.Menu>
             </Dropdown>
