@@ -40,6 +40,28 @@ function App() {
     refetchQueries: [{ query: GET_ALL_MOVIES }],
   });
 
+  function handleAddMovie() {
+    addMovie({
+      variables: {
+        title: movieObj.title,
+        year: movieObj.year,
+        director: movieObj.director,
+        description: movieObj.description,
+        actors: movieObj.actors,
+        genre: movieObj.genre,
+      },
+    });
+    setMovieObj({
+      title: "",
+    year: 2000,
+    director: "",
+    description: "",
+    actors: [],
+    genre: "",
+    });
+  }
+
+
   //get all genres
   const [genre, setGenre] = useState<Genre[]>([]);
   const [chosenGenre, setChosenGenre] = useState<Genre["type"]>("");
@@ -49,6 +71,10 @@ function App() {
       setGenre(data.genres);
     },
   });
+
+  //actors
+  const [chosenActor, setChosenActor] = useState<string>("");
+
 
   return (
     <>
@@ -127,40 +153,43 @@ function App() {
               placeholder="actors"
               value={movieObj.actors}
               onChange={(evt) => {
-                movieObj.actors.push(evt.target.value);
-                setMovieObj({ ...movieObj, actors: movieObj.actors });
+                  const target = evt.target;
+                  const value = target.value;
+                  const name = target.name;
+                  setMovieObj({ ...movieObj, [name]: value });
               }}
+
             />
+            {/* <Button onClick={() => {
+               movieObj.actors.push(chosenActor);
+               setMovieObj({ ...movieObj, actors: movieObj.actors });}}
+              >Add Actor</Button> */}
+
             <br />
-            <input
-              type="text"
-              name="genre"
-              placeholder="genre"
-              value={movieObj.genre}
-              onChange={(evt) => {
-                setMovieObj({ ...movieObj, genre: evt.target.value });
-              }}
-            />
+
 
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown.Toggle variant="success" id="dropdown-basic" value={movieObj.genre}>
                 {chosenGenre ? chosenGenre : "Select Genre"}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 {genre.map((genre: Genre) => (
                   <Dropdown.Item
-                    onClick={() => setChosenGenre(genre.type)}
-                    key={genre.id}
-                  >
-                    {genre.type}
-                  </Dropdown.Item>
+                  onClick={() => {
+                    setChosenGenre(genre.type)
+                    setMovieObj({ ...movieObj, genre: genre.id })}}
+                  key={genre.id}
+                >
+                  {genre.type} {genre.id}
+                </Dropdown.Item>
+                
                 ))}
               </Dropdown.Menu>
             </Dropdown>
             <br />
             <br />
-            <Button type="submit">Add Movie</Button>
+            <Button type="submit" onClick={handleAddMovie}>Add Movie</Button>
           </Form>
         </Col>
       </Row>
