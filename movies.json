@@ -44,15 +44,6 @@
     "reviews": []
   }
   {
-    "title": "Forrest Gump",
-    "year": 1994,
-    "director": "Robert Zemeckis",
-    "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
-    "actors": ["Tom Hanks", "Robin Wright"],
-    "genre": { "ObjectId": "657085302523fe56039510b6" },
-    "reviews": []
-  }
-  {
     "title": "Inception",
     "year": 2010,
     "director": "Christopher Nolan",
