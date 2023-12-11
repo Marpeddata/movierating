@@ -15,7 +15,9 @@ const reviewSchema = new mongoose.Schema<Review>(
       type: String,
       required: true,
     },
-    movie: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
+    movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie" },
+    
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
   },
   {
     collection: "reviews",

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Movie, Genre } from "../types";
+import { Movie} from "../types";
 
 const movieSchema = new mongoose.Schema<Movie>(
   {

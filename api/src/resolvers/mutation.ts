@@ -1,8 +1,9 @@
-import { Movie, Review } from "../types";
+import { Movie, Review, User } from "../types";
 import { ObjectId } from "mongodb";
 import MovieModel from "../models/movieModel";
 import ReviewModel from "../models/reviewModel";
 import GenreModel from "../models/genreModel";
+import UserModel from "../models/userModel";
 
 export default {
   createMovie: async (_parent: any, args: Movie) => {
@@ -33,7 +34,13 @@ export default {
       date: args.date,
       text: args.text,
       movie: args.movie,
+      user: args.user.id,
     });
+
+    const usr = await UserModel.findOne({ _id: args.user.id });
+    usr?.reviews.push(newReview.id);
+    usr?.save();
+
     console.log(newReview);
     await newReview.save();
     return newReview.populate("movies");
@@ -41,19 +48,24 @@ export default {
 
   deleteMovie: async (_: any, { id }: ObjectId) => {
     if (await MovieModel.findById(id)) {
-      const movie = await MovieModel.findById(id);
-      if (movie?.reviews.length !== -1) {
-        movie?.reviews.forEach(async (review) => {
-          const rev = await ReviewModel.findOne({ _id: review });
-          rev?.movie.splice(rev?.movie.indexOf(movie.id), 1);
-          rev?.save();
-        });
-      } else {
-      }
+      const movie = await MovieModel.findById(id);  
       await MovieModel.findByIdAndDelete(movie?.id);
       return true;
     } else {
       return false;
     }
+  },
+  createUser: async (_: any, args: User) => {
+    console.log(args);
+    const newUser = new UserModel({
+      id: new ObjectId(),
+      username: args.username,
+      password: args.password,
+      role: "user",
+      
+    });
+    console.log(newUser);
+    await newUser.save();
+    return newUser;
   },
 };

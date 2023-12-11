@@ -16,7 +16,8 @@ type Review = {
   rating: string;
   date: Date;
   text: string;
-  movie: ObjectId[];
+  movie: ObjectId;
+  user: ObjectId;
 };
 
 type Genre = {
@@ -25,4 +26,12 @@ type Genre = {
   movies: ObjectId[];
 };
 
-export type { Movie, Review, Genre };
+type User = {
+  id: ObjectId;
+  username: string;
+  password: string;
+  role: string;
+  reviews: ObjectId[];
+}
+
+export type { Movie, Review, Genre, User };

@@ -13,6 +13,7 @@ import typeDefs from "./schema";
 import MovieModel from "./models/movieModel";
 import GenreModel from "./models/genreModel";
 import ReviewModel from "./models/reviewModel";
+import UserModel from "./models/userModel";
 
 // interface MyContext {
 //   movies: typeof MovieModel;
@@ -43,7 +44,7 @@ app.use(
   cors<cors.CorsRequest>(),
   express.json(),
   expressMiddleware(server, {
-    context: async () => ({ MovieModel, GenreModel, ReviewModel }),
+    context: async () => ({ MovieModel, GenreModel, ReviewModel, UserModel }),
   })
 );
 

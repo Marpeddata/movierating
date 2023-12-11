@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import movieModel from "../models/movieModel";
 import reviewModel from "../models/reviewModel";
 import genreModel from "../models/genreModel";
+import userModel from "../models/userModel";
 
 export default {
   movies: async () => {
@@ -16,11 +17,11 @@ export default {
     return mov;
   },
   reviews: async () => {
-    const reviews = await reviewModel.find().populate("movies");
+    const reviews = await reviewModel.find().populate(["movies", "reviews"]);
     return reviews;
   },
   review: async (_: any, { id }: ObjectId) => {
-    const review = await reviewModel.findById(id).populate("movies");
+    const review = await reviewModel.findById(id).populate(["movies", "reviews"]);
     return review;
   },
 
@@ -32,5 +33,13 @@ export default {
   genre: async (_: any, { id }: ObjectId) => {
     const genre = await genreModel.findById(id).populate("movies");
     return genre;
+  },
+  users: async () => {
+    const users = await userModel.find().populate("reviews");
+    return users;
+  },
+  user: async (_: any, { id }: ObjectId) => {
+    const user = await userModel.findById(id).populate("reviews");
+    return user;
   },
 };
