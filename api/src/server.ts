@@ -10,10 +10,8 @@ import http from "http";
 import Query from "./resolvers/Query";
 import Mutation from "./resolvers/mutation";
 import typeDefs from "./schema";
-import MovieModel from "./models/movieModel";
-import GenreModel from "./models/genreModel";
-import ReviewModel from "./models/reviewModel";
-import UserModel from "./models/userModel";
+import { userFromToken } from './utils';
+
 
 // interface MyContext {
 //   movies: typeof MovieModel;
@@ -44,7 +42,22 @@ app.use(
   cors<cors.CorsRequest>(),
   express.json(),
   expressMiddleware(server, {
-    context: async () => ({ MovieModel, GenreModel, ReviewModel, UserModel }),
+    context: async ({req, res}) => { 
+
+    // Get the user token from the headers.
+    const token = req.headers.authorization || '';
+    if (!token) {
+      return { user: null };
+    }
+    console.log('TOKEN: ', token);
+    // Try to retrieve a user with the token
+    const user = await userFromToken(token);
+    
+    console.log('USER: ', user?.username);
+    // Add the user to the context
+    return { user };
+
+     },
   })
 );
 
