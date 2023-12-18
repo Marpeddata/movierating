@@ -2,8 +2,6 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 import UserModel from './models/userModel';
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 // import bodyParser from 'body-parser';
 // var jsonParser = bodyParser.json();
 
@@ -29,18 +27,6 @@ router.post('/login', async (req, res) => {
     });
     res.status(200).json({ token });
   } catch (error) {
-  const userSchema = new mongoose.Schema({
-    // schema fields
-  });
-
-  // Add comparePassword method to the schema
-  userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
-  };
-
-  const UserModel = mongoose.model<User>('User', userSchema);
-
-  export default UserModel;
     console.error(error);
     res.status(500).json({ message: `Server error: ${error}` });
   }
