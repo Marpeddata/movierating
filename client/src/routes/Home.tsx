@@ -54,7 +54,7 @@ function Home() {
     });
     setMovieObj({
       title: "",
-    year: 2000,
+    year: NaN,
     director: "",
     description: "",
     actors: [],
