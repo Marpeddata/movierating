@@ -7,10 +7,12 @@ const userSchema = new mongoose.Schema<User>(
     username: {
       type: String,
       required: true,
+      unique: true 
     },
     password: {
       type: String,
       required: true,
+      select: false 
     },
     role: {
       type: String,
@@ -18,6 +20,11 @@ const userSchema = new mongoose.Schema<User>(
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   },
   {
+    methods: {
+      comparePassword: async function (password: string) {
+        return bcrypt.compare(password, this.password);
+      }
+    },
     collection: "users",
   }
 );

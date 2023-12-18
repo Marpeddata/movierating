@@ -1,14 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAuth } from '../AuthContext'
 
 
 
 
 const Header = () => {
+    const {state} = useAuth();
 
     return (<ul className="header">
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/login">Login</NavLink></li>
+        {state.username} {state.loggedIn ? (<li><NavLink to="/logout">Logout</NavLink></li>) : (<></>)}
 
 
         {/* {!loggedIn ? (<LogIn login={login} />) :
