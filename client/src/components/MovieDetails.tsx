@@ -59,18 +59,14 @@ const MovieDetails = ({ movie }: { movie: Movie }) => {
           <h4>Reviews</h4>
           <Card.Body>
             <Card.Text className="text-start">
-              <p className="lead">Review 1</p>
-
-              {/* {movie.reviews?.map((review, index) => (
+              {movie.reviews?.map((review, index) => (
                 <div key={index}>
+                  <p className="lead">Username: {review.user.username}</p>
                   <p className="lead">Date: {review.date}</p>
                   <p className="lead">Rating: {review.text}</p>
                   <p className="lead">Text: {review.rating}</p>
                 </div>
-              ))} */}
-
-              <p className="lead">Review 2</p>
-              <p className="lead">Review 3</p>
+              ))}
             </Card.Text>
           </Card.Body>
         </Card>
