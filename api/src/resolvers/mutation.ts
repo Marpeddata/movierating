@@ -5,6 +5,10 @@ import ReviewModel from "../models/reviewModel";
 import GenreModel from "../models/genreModel";
 import UserModel from "../models/userModel";
 import RequestModel from "../models/requestModel";
+import * as dotenv from "dotenv";
+dotenv.config({ path: "../config.env" });
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export default {
   createMovie: async (_parent: any, args: Movie) => {
@@ -62,19 +66,6 @@ export default {
     }
   },
 
-  createUser: async (_: any, args: User) => {
-    console.log(args);
-    const newUser = new UserModel({
-      id: new ObjectId(),
-      username: args.username,
-      password: args.password,
-      role: "user",
-    });
-    console.log(newUser);
-    await newUser.save();
-    return newUser;
-  },
-
   createRequest: async (_: any, args: Request) => {
     console.log(args);
     const newRequest = new RequestModel({
@@ -99,4 +90,49 @@ export default {
       return false;
     }
   },
+  createUser: async (_: any, args: User) => {
+   
+    const oldUser = await UserModel.findOne({ username: args.username });
+
+    if (oldUser) {
+      //needs error handling
+      console.log("user already exists");
+    }
+
+    const encryptedPassword = await bcrypt.hash(args.password, 10);
+
+    const newUser = new UserModel({
+      id: new ObjectId(),
+      username: args.username,
+      password: encryptedPassword,
+      
+      
+    });
+
+    const token = jwt.sign({ id: newUser.id, username: newUser.username, role: newUser.role }, process.env.JWT_SECRET!,{expiresIn: "2h"})
+
+
+    newUser.token = token;
+    console.log(newUser);
+    const res = await newUser.save();
+    return res.populate("reviews");
+  },
+  loginUser: async (_: any, args: User) => {
+    const user = await UserModel.findOne({ username: args.username });
+
+    if(user && (await bcrypt.compare(args.password, user.password))) {
+      const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, process.env.JWT_SECRET!,{expiresIn: "2h"})
+      user.token = token;
+      UserModel.findOneAndUpdate({ username: args.username });
+      
+
+      return user;
+    } else {
+      //needs error handling
+      console.log("incorrect username or password");
+    }
+
+    
+
+  }
 };

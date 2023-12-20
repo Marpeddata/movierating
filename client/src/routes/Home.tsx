@@ -1,4 +1,9 @@
+
 import AllMovies from "../components/AllMovies";
+
+
+
+
 function Home() {
   return (
     <>

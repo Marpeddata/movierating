@@ -1,13 +1,25 @@
-import { NavLink } from "react-router-dom";
+import React,{useContext} from 'react'
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/authContext'
 
 const Header = () => {
+
+  let navigate = useNavigate();
+    const {user, logout} = useContext(AuthContext);
+
+    const onLogout = () => {
+        logout();
+        navigate('/');
+    }
+    console.log(user)
+
   return (
     <ul className="header">
-      <li>
+      
+      {user ?
+            <>
+            <li>
         <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
       </li>
       <li>
         <NavLink to="/addMovie">Add movie</NavLink>
@@ -21,6 +33,17 @@ const Header = () => {
       <li>
         <NavLink to="/showRequests">Show requests</NavLink>
       </li>
+            <li><NavLink onClick={onLogout} to="/">Logout</NavLink></li>
+            </>    
+              :
+            <>
+            <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+            <li><NavLink to="/login">Login</NavLink></li>
+            <li><NavLink to="/register">register</NavLink></li>
+            </>
+    }
     </ul>
   );
 };

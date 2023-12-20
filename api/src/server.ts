@@ -10,7 +10,6 @@ import http from "http";
 import Query from "./resolvers/Query";
 import Mutation from "./resolvers/mutation";
 import typeDefs from "./schema";
-import { userFromToken } from './utils';
 
 
 // interface MyContext {
@@ -41,24 +40,7 @@ app.use(
   "/graphql",
   cors<cors.CorsRequest>(),
   express.json(),
-  expressMiddleware(server, {
-    context: async ({req, res}) => { 
-
-    // Get the user token from the headers.
-    const token = req.headers.authorization || '';
-    if (!token) {
-      return { user: null };
-    }
-    console.log('TOKEN: ', token);
-    // Try to retrieve a user with the token
-    const user = await userFromToken(token);
-    
-    console.log('USER: ', user?.username);
-    // Add the user to the context
-    return { user };
-
-     },
-  })
+  expressMiddleware(server)
 );
 
 await new Promise<void>((resolve) =>

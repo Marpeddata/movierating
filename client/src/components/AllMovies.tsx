@@ -1,17 +1,31 @@
+import React,{useContext} from 'react'
 import { useQuery } from "@apollo/client";
 import { GET_ALL_MOVIES } from "../queries/allQueries";
 import "../styles/App.css";
 import { Movie } from "../types";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from '../context/authContext'
 
 const AllMovies = () => {
   const { loading, error, data } = useQuery(GET_ALL_MOVIES);
   const movies: Movie[] = [];
   movies.push(data?.movies);
 
+  const {user, logout} = useContext(AuthContext);
+
   return (
     <>
+    <h1>Home Page</h1>
+      {user?
+          <>
+          <p>Welcome {user.username}</p>
+          </>
+    :
+    <>
+    <p>Not logged in yet</p>
+    </>
+    }
       <Container>
         <h2 className="mt-5 mb-5">All Movies</h2>
         {movies.length > 0 && (

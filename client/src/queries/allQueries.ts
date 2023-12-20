@@ -36,7 +36,29 @@ import { gql } from "@apollo/client";
 //     }
 //   }
 // `;
+const ADD_USER = gql`
+mutation CreateUser($username: String, $password: String) {
+  createUser(username: $username, password: $password) {
+    id
+    username
+    role
+    token
+  }
+}
+`;
 
+
+
+const LOGIN_USER = gql`
+mutation loginUser($username: String, $password: String) {
+  loginUser(username: $username, password: $password) {
+    id
+    username
+    role
+    token
+  }
+}
+`;
 const GET_ALL_MOVIES = gql`
   query Movies {
     movies {
@@ -229,6 +251,8 @@ export {
   SEND_REQUEST,
   GET_ALL_REQUESTS,
   ADD_REVIEW,
+  ADD_USER,
+  LOGIN_USER
 };
 
 // export { GET_USERS, GET_USER, ADD_USER };
