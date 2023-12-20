@@ -1,9 +1,9 @@
-import React from "react";
+import SendRequest from "../components/SendRequest";
 
 const RequestMovie = () => {
   return (
     <div>
-      <h1>Request Movie</h1>
+      <SendRequest />
     </div>
   );
 };
