@@ -1,30 +1,47 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import { GET_ALL_REQUESTS } from "../queries/allQueries";
 import { useQuery } from "@apollo/client";
 import { Request } from "../types";
 
 const AdminRequests = () => {
   const { loading, error, data } = useQuery(GET_ALL_REQUESTS);
-  const requests: Request[] = [];
-  requests.push(data?.request);
+
+  console.log("data", data);
 
   return (
     <div>
+      <div className="display-6 mt-4">Admin Requests</div>
       <Container className="d-flex justify-content-center shadow-sm p-3 my-5 bg-white rounded">
-        <h1>Admin Requests</h1>
-
-        {data?.request.map((request: Request) => {
-          return (
-            <Container className="d-flex justify-content-center shadow-sm p-3 my-5 bg-white rounded">
-              <h1>{request.title}</h1>
-              <h1>{request.year}</h1>
-              <h1>{request.director}</h1>
-              <h1>{request.comment}</h1>
-              <h1>{request.username}</h1>
-            </Container>
-          );
-        })}
+        <Table striped bordered hover className="text-start">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Title</th>
+              <th>Year</th>
+              <th>Director</th>
+              <th>Comment</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.requests.map((request: Request, index: number) => (
+              <tr key={request.id}>
+                <td>{index + 1}</td>
+                <td>{request.username}</td>
+                <td>{request.title}</td>
+                <td>{request.year}</td>
+                <td>{request.director}</td>
+                <td>{request.comment}</td>
+                <td>
+                  <div className="text-center">
+                    <button className="btn btn-danger">Slet</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </Container>
     </div>
   );

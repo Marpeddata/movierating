@@ -6,10 +6,13 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/authContext";
 
 const UsersReviews = () => {
+  const { user, logout } = useContext(AuthContext);
   const { loading, error, data } = useQuery(GET_REVIEW_BY_USER_ID, {
-    variables: { userId: '6580d3f5ff6a41872f3d6b92' },
+    variables: { userId: user.id },
   });
 
   if (loading) {

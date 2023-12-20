@@ -1,11 +1,14 @@
-import { Form, Button,  } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_REVIEW } from "../queries/allQueries";
 import { ReviewInput, Movie } from "../types";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import { User } from "../types";
 
 const CreateReview = ({ movie }: { movie: Movie }) => {
-
+  const { user }: { user: User | null } = useContext(AuthContext);
   function handleAddReview(e: any) {
     e.preventDefault();
     addReview({
@@ -14,7 +17,7 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
         date: reviewObj.date,
         text: reviewObj.text,
         movie: movie.id,
-        user: "6580d3f5ff6a41872f3d6b92",
+        user: user.id,
       },
     });
     setReviewObj({
@@ -26,8 +29,8 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
 
   const [reviewObj, setReviewObj] = useState<ReviewInput>({
     rating: NaN,
-      date: "",
-      text: "",
+    date: "",
+    text: "",
   });
 
   const [addReview, addReviewResponse] = useMutation(ADD_REVIEW);
@@ -37,7 +40,7 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
       <h2>Add Review</h2>
       <Form
         onSubmit={(e) => {
-            handleAddReview(e);
+          handleAddReview(e);
         }}
       >
         <br />

@@ -1,10 +1,14 @@
 import { Container, Col, Form, Button } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { SEND_REQUEST } from "../queries/allQueries";
-import { GET_ALL_REQUESTS } from "../queries/allQueries";
 import { useState } from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+import { User } from "../types";
 
 const SendRequest = () => {
+  const { user }: { user: User | null } = useContext(AuthContext);
+
   const [sendRequest, sendRequestResponse] = useMutation(SEND_REQUEST);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -19,7 +23,7 @@ const SendRequest = () => {
   function handleSendRequest(e) {
     // DETTE SKAL IKKE VÆRE HARDCODET
     e.preventDefault();
-    requestObj.username = "israa";
+    requestObj.username = user.username;
 
     sendRequest({
       variables: {
