@@ -7,14 +7,22 @@ type Movie = {
   director: string;
   description: string;
   actors: string[];
-  genre: ObjectId;
-  reviews: ObjectId[];
+  genre: Genre;
+  reviews: Review[];
 };
+
+type User = {
+  id: ObjectId;
+  username: string;
+  password: string;
+  role: string;
+  reviews: Review[];
+}
 
 type Review = {
   id: string;
   rating: string;
-  date: Date;
+  date: string;
   text: string;
   movie: ObjectId;
   user: ObjectId;
@@ -25,13 +33,5 @@ type Genre = {
   type: string;
   movies: ObjectId[];
 };
-
-type User = {
-  id: ObjectId;
-  username: string;
-  password: string;
-  role: string;
-  reviews: ObjectId[];
-}
 
 export type { Movie, Review, Genre, User };

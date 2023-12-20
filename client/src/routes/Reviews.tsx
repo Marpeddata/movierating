@@ -1,7 +1,9 @@
+import UsersReviews from "../components/UsersReviews";
+
 const Reviews = () => {
   return (
     <div>
-      <h1>Your reviews</h1>
+      <UsersReviews />
     </div>
   );
 };

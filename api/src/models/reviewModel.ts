@@ -8,7 +8,7 @@ const reviewSchema = new mongoose.Schema<Review>(
       required: true,
     },
     date: {
-      type: Date,
+      type: String,
       required: true,
     },
     text: {
