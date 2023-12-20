@@ -33,12 +33,22 @@ const typeDefs = `#graphql
         role: String
         reviews: [Review]
     }
+
+    type Request {
+        id: ID!
+        title: String!
+        year: Int!
+        director: String!
+        comment: String!
+        username: String!
+    }
     
     
 type Query {
     movies: [Movie!]!
     genres: [Genre!]!
     reviews: [Review!]!
+    requests: [Request!]!
 
     movie(id: ID!): Movie
     review(id: ID!): Review
@@ -57,6 +67,8 @@ type Mutation {
     createReview(rating: Int!, date: String!, text: String!, movie: ID!, user: ID!): Review
     deleteMovie(id: ID!): Boolean
     createUser(username: String!, password: String!): User
+    createRequest(title: String!, year: Int!, director: String!, comment: String!, username: String!): Request
+    deleteRequest(id: ID!): Boolean
 }
 `;
 

@@ -1,41 +1,38 @@
-import { ObjectId } from "mongodb";
-
 type Movie = {
-  id: ObjectId;
+  id?: string;
   title: string;
   year: number;
   director: string;
   description: string;
   actors: string[];
   genre: Genre;
-  reviews: Review[];
+  reviews?: Review[];
 };
 
 type User = {
-  id: ObjectId;
+  id: String;
   username: string;
   password: string;
   role: string;
   reviews: Review[];
 };
 
-type Review = {
-  id: ObjectId;
-  rating: string;
-  date: string;
-  text: string;
-  movie: ObjectId;
-  user: ObjectId;
+type Genre = {
+  id: string;
+  type: string;
 };
 
-type Genre = {
-  id: ObjectId;
-  type: string;
-  movies: ObjectId[];
+type Review = {
+  id: string;
+  rating: string;
+  date: String;
+  text: string;
+  movie: Movie;
+  user: User;
 };
 
 type Request = {
-  id: ObjectId;
+  id: string;
   title: string;
   year: number;
   director: string;
@@ -43,4 +40,4 @@ type Request = {
   username: string;
 };
 
-export type { Movie, Review, Genre, User, Request };
+export type { Movie, User, Genre, Review, Request };

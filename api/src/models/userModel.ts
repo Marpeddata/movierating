@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { User } from "../types";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema<User>(
   {
@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema<User>(
     role: {
       type: String,
     },
+
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   },
   {
@@ -22,8 +23,9 @@ const userSchema = new mongoose.Schema<User>(
   }
 );
 
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) { // if password is not modified, then do nothing
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    // if password is not modified, then do nothing
     return next();
   }
 

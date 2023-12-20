@@ -15,7 +15,7 @@ type User = {
   password: string;
   role: string;
   reviews: Review[];
-}
+};
 
 type Genre = {
   id: string;
@@ -31,10 +31,19 @@ type Review = {
   user: User;
 };
 
+type Request = {
+  id: string;
+  title: string;
+  year: number;
+  director: string;
+  comment: string;
+  username: string;
+};
+
 type ReviewInput = {
   rating: number;
   date: String;
   text: string;
 };
 
-export type { Movie, User, Genre, Review, ReviewInput };
+export type { Movie, User, Genre, Review, ReviewInput, Request };

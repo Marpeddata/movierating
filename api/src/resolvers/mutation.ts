@@ -1,9 +1,10 @@
-import { Movie, Review, User } from "../types";
+import { Movie, Review, User, Request } from "../types";
 import { ObjectId } from "mongodb";
 import MovieModel from "../models/movieModel";
 import ReviewModel from "../models/reviewModel";
 import GenreModel from "../models/genreModel";
 import UserModel from "../models/userModel";
+import RequestModel from "../models/requestModel";
 
 export default {
   createMovie: async (_parent: any, args: Movie) => {
@@ -53,14 +54,14 @@ export default {
 
   deleteMovie: async (_: any, { id }: ObjectId) => {
     if (await MovieModel.findById(id)) {
-      const movie = await MovieModel.findById(id);  
+      const movie = await MovieModel.findById(id);
       await MovieModel.findByIdAndDelete(movie?.id);
       return true;
     } else {
       return false;
     }
   },
-  
+
   createUser: async (_: any, args: User) => {
     console.log(args);
     const newUser = new UserModel({
@@ -68,10 +69,34 @@ export default {
       username: args.username,
       password: args.password,
       role: "user",
-      
     });
     console.log(newUser);
     await newUser.save();
     return newUser;
+  },
+
+  createRequest: async (_: any, args: Request) => {
+    console.log(args);
+    const newRequest = new RequestModel({
+      id: new ObjectId(),
+      title: args.title,
+      year: args.year,
+      director: args.director,
+      comment: args.comment,
+      username: args.username,
+    });
+    console.log(newRequest);
+    await newRequest.save();
+    return newRequest;
+  },
+
+  deleteRequest: async (_: any, { id }: ObjectId) => {
+    if (await RequestModel.findById(id)) {
+      const request = await RequestModel.findById(id);
+      await RequestModel.findByIdAndDelete(request?.id);
+      return true;
+    } else {
+      return false;
+    }
   },
 };

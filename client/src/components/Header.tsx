@@ -18,6 +18,9 @@ const Header = () => {
       <li>
         <NavLink to="/reviews">Your reviews</NavLink>
       </li>
+      <li>
+        <NavLink to="/showRequests">Show requests</NavLink>
+      </li>
     </ul>
   );
 };
