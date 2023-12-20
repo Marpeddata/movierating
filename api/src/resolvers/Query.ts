@@ -36,7 +36,7 @@ export default {
     return genre;
   },
   users: async () => {
-    const users = await userModel.find().populate("reviews");
+    const users = await userModel.find().populate({ path: "reviews", populate: { path: "movie" , populate: { path: "genre" }} });
     return users;
   },
   user: async (_: any, { id }: ObjectId) => {

@@ -20,7 +20,7 @@ type User = {
 }
 
 type Review = {
-  id: string;
+  id: ObjectId;
   rating: string;
   date: string;
   text: string;

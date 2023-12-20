@@ -1,7 +1,9 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Movie } from "../types";
+import CreateReview from "./CreateReview";
 
 const MovieDetails = ({ movie }: { movie: Movie }) => {
+
   console.log("movie id:" + movie.id);
   console.log("movie title:" + movie.title);
   console.log("movie year:" + movie.year);
@@ -67,6 +69,7 @@ const MovieDetails = ({ movie }: { movie: Movie }) => {
                   <p className="lead">Text: {review.rating}</p>
                 </div>
               ))}
+              <CreateReview movie={movie} />
             </Card.Text>
           </Card.Body>
         </Card>

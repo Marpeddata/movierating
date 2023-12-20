@@ -31,4 +31,10 @@ type Review = {
   user: User;
 };
 
-export type { Movie, User, Genre, Review };
+type ReviewInput = {
+  rating: number;
+  date: String;
+  text: string;
+};
+
+export type { Movie, User, Genre, Review, ReviewInput };

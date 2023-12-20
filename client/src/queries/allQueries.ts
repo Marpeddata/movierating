@@ -138,6 +138,33 @@ query User($userId: ID!) {
 }
 `;
 
-export { GET_ALL_MOVIES, GET_MOVIE_BY_ID, GET_ALL_GENRES, ADD_MOVIE, GET_REVIEW_BY_USER_ID };
+const ADD_REVIEW = gql`
+mutation CreateReview($rating: Int!, $date: String!, $text: String!, $movie: ID!, $user: ID!) {
+  createReview(rating: $rating, date: $date, text: $text, movie: $movie, user: $user) {
+    id
+    rating
+    date
+    text
+    movie {
+      id
+      title
+      year
+      director
+      description
+      actors
+      genre {
+        id
+        type
+      }
+    }
+    user {
+      id
+      username
+    }
+  }
+}
+`;
+
+export { GET_ALL_MOVIES, GET_MOVIE_BY_ID, GET_ALL_GENRES, ADD_MOVIE, GET_REVIEW_BY_USER_ID, ADD_REVIEW };
 
 // export { GET_USERS, GET_USER, ADD_USER };
