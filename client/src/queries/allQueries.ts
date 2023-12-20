@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // const GET_USERS = gql`
 // query GET_ALL_USERS{
@@ -34,66 +34,80 @@ import { gql } from '@apollo/client';
 //       id
 //       name
 //     }
-//   } 
+//   }
 // `;
 
 const GET_ALL_MOVIES = gql`
-query Movies {
-  movies {
-    id
-    title
-    year
-    genre {
+  query Movies {
+    movies {
       id
-      type
+      title
+      year
+      genre {
+        id
+        type
+      }
     }
   }
-}
 `;
 
 const GET_MOVIE_BY_ID = gql`
-query Movie($movieId: ID!) {
-  movie(id: $movieId) {
-    id
-    title
-    year
-    director
-    description
-    actors
-    genre {
+  query Movie($movieId: ID!) {
+    movie(id: $movieId) {
       id
-      type
-    }
-    reviews {
-      id
-      rating
-      text
-      date
+      title
+      year
+      director
+      description
+      actors
+      genre {
+        id
+        type
+      }
+      reviews {
+        id
+        rating
+        text
+        date
+      }
     }
   }
-}
 `;
 
 const GET_ALL_GENRES = gql`
-query Genres {
-  genres {
-    id
-    type
-    movies {
+  query Genres {
+    genres {
+      id
+      type
+      movies {
+        id
+        title
+      }
+    }
+  }
+`;
+
+const ADD_MOVIE = gql`
+  mutation CreateMovie(
+    $title: String!
+    $year: Int!
+    $director: String!
+    $description: String!
+    $actors: [String!]!
+    $genre: ID!
+  ) {
+    createMovie(
+      title: $title
+      year: $year
+      director: $director
+      description: $description
+      actors: $actors
+      genre: $genre
+    ) {
       id
       title
     }
   }
-}
-`;
-
-const ADD_MOVIE = gql`
-mutation CreateMovie($title: String!, $year: Int!, $director: String!, $description: String!, $actors: [String!]!, $genre: ID!) {
-  createMovie(title: $title, year: $year, director: $director, description: $description, actors: $actors, genre: $genre) {
-    id
-    title
-  }
-}
 `;
 
 export { GET_ALL_MOVIES, GET_MOVIE_BY_ID, GET_ALL_GENRES, ADD_MOVIE };
