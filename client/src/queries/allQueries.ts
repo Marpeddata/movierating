@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 // const GET_USERS = gql`
 // query GET_ALL_USERS{
@@ -34,82 +34,110 @@ import { gql } from "@apollo/client";
 //       id
 //       name
 //     }
-//   }
+//   } 
 // `;
 
 const GET_ALL_MOVIES = gql`
-  query Movies {
-    movies {
+query Movies {
+  movies {
+    id
+    title
+    year
+    director
+    description
+    actors
+    genre {
       id
-      title
-      year
-      genre {
+      type
+    }
+    reviews {
+      id
+      rating
+      date
+      text
+      user {
         id
-        type
+        username
       }
     }
   }
+}
 `;
 
 const GET_MOVIE_BY_ID = gql`
-  query Movie($movieId: ID!) {
-    movie(id: $movieId) {
+query Movie($movieId: ID!) {
+  movie(id: $movieId) {
+    id
+    title
+    year
+    director
+    description
+    actors
+    genre {
       id
-      title
-      year
-      director
-      description
-      actors
-      genre {
-        id
-        type
-      }
-      reviews {
-        id
-        rating
-        text
-        date
-      }
+      type
+    }
+    reviews {
+      id
+      rating
+      text
+      date
     }
   }
+}
 `;
 
 const GET_ALL_GENRES = gql`
-  query Genres {
-    genres {
-      id
-      type
-      movies {
-        id
-        title
-      }
-    }
-  }
-`;
-
-const ADD_MOVIE = gql`
-  mutation CreateMovie(
-    $title: String!
-    $year: Int!
-    $director: String!
-    $description: String!
-    $actors: [String!]!
-    $genre: ID!
-  ) {
-    createMovie(
-      title: $title
-      year: $year
-      director: $director
-      description: $description
-      actors: $actors
-      genre: $genre
-    ) {
+query Genres {
+  genres {
+    id
+    type
+    movies {
       id
       title
     }
   }
+}
 `;
 
-export { GET_ALL_MOVIES, GET_MOVIE_BY_ID, GET_ALL_GENRES, ADD_MOVIE };
+const ADD_MOVIE = gql`
+mutation CreateMovie($title: String!, $year: Int!, $director: String!, $description: String!, $actors: [String!]!, $genre: ID!) {
+  createMovie(title: $title, year: $year, director: $director, description: $description, actors: $actors, genre: $genre) {
+    id
+    title
+  }
+}
+`;
+
+
+const GET_REVIEW_BY_USER_ID = gql`
+query User($userId: ID!) {
+  user(id: $userId) {
+    id
+    username
+    password
+    role
+    reviews {
+      id
+      rating
+      date
+      text
+      movie {
+        id
+        title
+        year
+        director
+        description
+        actors
+        genre {
+          type
+        }
+      }
+    }
+  }
+}
+`;
+
+export { GET_ALL_MOVIES, GET_MOVIE_BY_ID, GET_ALL_GENRES, ADD_MOVIE, GET_REVIEW_BY_USER_ID };
 
 // export { GET_USERS, GET_USER, ADD_USER };

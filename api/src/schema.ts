@@ -54,7 +54,7 @@ type Query {
     
 type Mutation {
     createMovie(title: String!, year: Int!, director: String!, description: String!, actors: [String!]!, genre: ID!): Movie
-    createReview(id: ID!, rating: Int!, date: String!, text: String!, movie: ID!): Review
+    createReview(rating: Int!, date: String!, text: String!, movie: ID!, user: ID!): Review
     deleteMovie(id: ID!): Boolean
     createUser(username: String!, password: String!): User
 }
