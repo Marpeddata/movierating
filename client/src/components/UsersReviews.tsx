@@ -21,6 +21,8 @@ const UsersReviews = () => {
     return <p>Error: {error.message}</p>;
   }
 
+  const star = "⭐";
+
   return (
     <>
       <div className="display-6 mt-4">Hi {data?.user.username}! 😄</div>
@@ -37,7 +39,7 @@ const UsersReviews = () => {
                 <Card.Text>"{review.text}"</Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroup.Item>Rating: {review.rating}</ListGroup.Item>
+                <ListGroup.Item>Rating: {star.repeat(review.rating)} ({review.rating}/10)</ListGroup.Item>
                 <ListGroup.Item>Date: {review.date}</ListGroup.Item>
               </ListGroup>
             </Card>

@@ -28,9 +28,7 @@ const Header = () => {
             <Nav className="mr-auto">
               {!user ? (
                 <>
-                  <li>
-                    <Nav.Link href="/">Home</Nav.Link>
-                  </li>
+
                   <li>
                     <Nav.Link href="/login">Login</Nav.Link>
                   </li>
@@ -40,9 +38,6 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li>
-                    <Nav.Link href="/">Home</Nav.Link>
-                  </li>
 
                   {user.role === "admin" ? (
                     <>
