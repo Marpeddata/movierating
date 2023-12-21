@@ -1,4 +1,4 @@
-import { Form, Button, Dropdown } from "react-bootstrap";
+import { Form, Button, Dropdown, Container } from "react-bootstrap";
 import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import {
@@ -58,111 +58,135 @@ const CreateMovie = () => {
 
   return (
     <div>
-      <h2>Add Movie</h2>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addMovie({
-            variables: {
-              title: movieObj.title,
-              year: movieObj.year,
-              director: movieObj.director,
-              description: movieObj.description,
-              actors: movieObj.actors,
-              genre: movieObj.genre,
-            },
-          });
-        }}
-      >
-        <br />
-        <input
-          type="text"
-          name="title"
-          placeholder="title"
-          value={movieObj.title}
-          onChange={(evt) => {
-            setMovieObj({ ...movieObj, title: evt.target.value });
-          }}
-        />
-        <br />
-        <input
-          type="number"
-          name="year"
-          placeholder="year"
-          value={movieObj.year}
-          onChange={(evt) => {
-            setMovieObj({ ...movieObj, year: parseInt(evt.target.value) });
-          }}
-        />
-        <br />
-        <input
-          type="text"
-          name="director"
-          placeholder="director"
-          value={movieObj.director}
-          onChange={(evt) => {
-            setMovieObj({ ...movieObj, director: evt.target.value });
-          }}
-        />
-        <br />
-        <input
-          type="text"
-          name="description"
-          placeholder="description"
-          value={movieObj.description}
-          onChange={(evt) => {
-            setMovieObj({ ...movieObj, description: evt.target.value });
-          }}
-        />
-        <br />
-        <input
-          type="text"
-          name="actors"
-          placeholder="actors"
-          value={movieObj.actors}
-          onChange={(evt) => {
-            const target = evt.target;
-            const value = target.value;
-            const name = target.name;
-            setMovieObj({ ...movieObj, [name]: value });
-          }}
-        />
-        {/* <Button onClick={() => {
-               movieObj.actors.push(chosenActor);
-               setMovieObj({ ...movieObj, actors: movieObj.actors });}}
-              >Add Actor</Button> */}
+      <Container className=" shadow min-vh-100 py-2 pt-4">
+        <p className="display-6 mb-5"> Add movie </p>
+        <div className="container mt-3">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-6">
+              <div className="card px-5 py-5" id="form1">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    addMovie({
+                      variables: {
+                        title: movieObj.title,
+                        year: movieObj.year,
+                        director: movieObj.director,
+                        description: movieObj.description,
+                        actors: movieObj.actors,
+                        genre: movieObj.genre,
+                      },
+                    });
+                  }}
+                >
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      placeholder="title"
+                      value={movieObj.title}
+                      onChange={(evt) => {
+                        setMovieObj({ ...movieObj, title: evt.target.value });
+                      }}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="number"
+                      name="year"
+                      min={1900}
+                      placeholder="year"
+                      value={movieObj.year}
+                      onChange={(evt) => {
+                        setMovieObj({
+                          ...movieObj,
+                          year: parseInt(evt.target.value),
+                        });
+                      }}
+                    />
+                  </Form.Group>
 
-        <br />
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="director"
+                      placeholder="director"
+                      value={movieObj.director}
+                      onChange={(evt) => {
+                        setMovieObj({
+                          ...movieObj,
+                          director: evt.target.value,
+                        });
+                      }}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="description"
+                      placeholder="description"
+                      value={movieObj.description}
+                      onChange={(evt) => {
+                        setMovieObj({
+                          ...movieObj,
+                          description: evt.target.value,
+                        });
+                      }}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="actors"
+                      placeholder="actors"
+                      value={movieObj.actors}
+                      onChange={(evt) => {
+                        const target = evt.target;
+                        const value = target.value;
+                        const name = target.name;
+                        setMovieObj({ ...movieObj, [name]: value });
+                      }}
+                    />
+                  </Form.Group>
+                  <Dropdown className="text-start ">
+                    <Dropdown.Toggle
+                      variant="secondary"
+                      id="dropdown-basic"
+                      value={movieObj.genre}
+                    >
+                      {chosenGenre ? chosenGenre : "Select Genre"}
+                    </Dropdown.Toggle>
 
-        <Dropdown>
-          <Dropdown.Toggle
-            variant="success"
-            id="dropdown-basic"
-            value={movieObj.genre}
-          >
-            {chosenGenre ? chosenGenre : "Select Genre"}
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            {genre.map((genre: Genre) => (
-              <Dropdown.Item
-                onClick={() => {
-                  setChosenGenre(genre.type);
-                  setMovieObj({ ...movieObj, genre: genre.id });
-                }}
-                key={genre.id}
-              >
-                {genre.type} {genre.id}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
-        <br />
-        <br />
-        <Button type="submit" onClick={handleAddMovie}>
-          Add Movie
-        </Button>
-      </Form>
+                    <Dropdown.Menu>
+                      {genre.map((genre: Genre) => (
+                        <Dropdown.Item
+                          onClick={() => {
+                            setChosenGenre(genre.type);
+                            setMovieObj({ ...movieObj, genre: genre.id });
+                          }}
+                          key={genre.id}
+                        >
+                          {genre.type}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <div className="text-end">
+                    <Button
+                      value="log-in"
+                      className="btn btn-md greenBg whiteTekst mx-1"
+                      type="submit"
+                      onClick={handleAddMovie}
+                    >
+                      Add movie
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };

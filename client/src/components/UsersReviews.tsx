@@ -23,8 +23,8 @@ const UsersReviews = () => {
 
   return (
     <>
-      <div className="display-6 mt-4">Hi {data?.user.username}</div>
-      <p className="lead mt-2 mb-5">Here are all your reviews 😄</p>
+      <div className="display-6 mt-4">Hi {data?.user.username}! 😄</div>
+      <p className="lead mt-2 mb-5">Here are all your reviews </p>
       <Row>
         {data?.user.reviews.map((review: Review) => (
           <Col key={review.id} sm={6} md={4} lg={3}>
