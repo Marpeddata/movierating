@@ -25,6 +25,7 @@ const CreateMovie = () => {
   function handleAddMovie() {
     addMovie({
       variables: {
+        url: movieObj.url,
         title: movieObj.title,
         year: movieObj.year,
         director: movieObj.director,
@@ -34,6 +35,7 @@ const CreateMovie = () => {
       },
     });
     setMovieObj({
+      url: "",
       title: "",
       year: NaN,
       director: "",
@@ -44,6 +46,7 @@ const CreateMovie = () => {
   }
 
   const [movieObj, setMovieObj] = useState<Movie>({
+    url: "",
     title: "",
     year: NaN,
     director: "",
@@ -69,6 +72,7 @@ const CreateMovie = () => {
                     e.preventDefault();
                     addMovie({
                       variables: {
+                        url: movieObj.url,
                         title: movieObj.title,
                         year: movieObj.year,
                         director: movieObj.director,
@@ -79,6 +83,17 @@ const CreateMovie = () => {
                     });
                   }}
                 >
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="url"
+                      placeholder="url"
+                      value={movieObj.url}
+                      onChange={(evt) => {
+                        setMovieObj({ ...movieObj, url: evt.target.value });
+                      }}
+                    />
+                  </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Control
                       type="text"

@@ -2,7 +2,7 @@ const typeDefs = `#graphql
 
     type Movie {
         id: ID!
-        url: String!
+        url: String
         title: String!
         year: Int!
         director: String!

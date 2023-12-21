@@ -3,6 +3,10 @@ import { Movie} from "../types";
 
 const movieSchema = new mongoose.Schema<Movie>(
   {
+    url: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
