@@ -18,7 +18,7 @@ const RegisterForm = (props: any) => {
     registerUser();
   };
 
-  const { onChange, onSubmit, values } = useForm(registerUserCallback, {
+  const { onChange, onSubmit, values, error } = useForm(registerUserCallback, {
     username: "",
     password: "",
   });
@@ -86,16 +86,16 @@ const RegisterForm = (props: any) => {
                     </Button>
                   </div>
                   {/* Once again we dont handle errors correctly so this doesnt work, but leaving it here for reference - should give alert on wrong password or username */}
-                  {errors.length > 0 &&
-                    errors.map((error, index) => (
+                  {error !== "" ?
+                     
                       <div
                         className="alert alert-danger"
-                        key={index}
                         role="alert"
                       >
-                        {error}
-                      </div>
-                    ))}
+                        {error} test
+                      </div> :
+                      null
+                    }
                 </form>
               </div>
             </div>

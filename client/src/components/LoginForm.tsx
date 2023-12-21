@@ -9,18 +9,18 @@ import { Container, Button } from "react-bootstrap";
 const LoginForm = (props: any) => {
   let navigate = useNavigate();
   const context = useContext(AuthContext);
-  const [errors, setErrors] = useState([]);
+  const [errorL, setErrorL] = useState("");
 
   const loginUserCallback = () => {
-    console.log("Callback hit");
-    console.log(values);
+    
     loginUser();
   };
 
-  const { onChange, onSubmit, values } = useForm(loginUserCallback, {
+  const { onChange, onSubmit, values, error } = useForm(loginUserCallback, {
     username: "",
     password: "",
   });
+
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(proxy, { data: { loginUser: userData } }) {
@@ -28,13 +28,16 @@ const LoginForm = (props: any) => {
       navigate("/");
     },
     onError(error) {
-      console.log(error);
+      setErrorL(error.message);    
+      console.log(errorL);  
     },
     variables: {
       username: values.username,
       password: values.password,
     },
   });
+
+  
 
   return (
     <div>
@@ -73,17 +76,18 @@ const LoginForm = (props: any) => {
                       Login
                     </Button>
                   </div>
-                  {/* Once again we dont handle errors correctly so this doesnt work, but leaving it here for reference - should give alert on wrong password or username */}
-                  {errors.length > 0 &&
-                    errors.map((error, index) => (
+                  
+                  
+                  {errorL !== "" ?
+                     
                       <div
                         className="alert alert-danger"
-                        key={index}
                         role="alert"
                       >
-                        {error}
-                      </div>
-                    ))}
+                        incorrect username or password
+                      </div> :
+                      null
+                    }
                 </form>
               </div>
             </div>

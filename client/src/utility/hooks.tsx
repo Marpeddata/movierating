@@ -3,16 +3,18 @@ import { useState } from "react";
 export const useForm = (callback: any, initialState = {}) => {
   const [values, setValues] = useState(initialState);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const onChange = (event: any) => {
+    event.preventDefault();
     setValues({
       ...values,
       [event.target.name]: event.target.value,
     });
-    console.log(values);
+   
 
     if (event.target.name === "confirmPassword") {
       setConfirmPassword(event.target.value);
-      console.log(confirmPassword);
+      
     }
   };
   const onSubmit = (event: any) => {
@@ -22,7 +24,7 @@ export const useForm = (callback: any, initialState = {}) => {
 
     if (confirmPassword !== "") {
       if (values.password !== confirmPassword) {
-        console.log("Passwords do not match");
+        setError("Passwords do not match");
         return;
       }
     }
@@ -33,5 +35,6 @@ export const useForm = (callback: any, initialState = {}) => {
     onChange,
     onSubmit,
     values,
+    error,
   };
 };
