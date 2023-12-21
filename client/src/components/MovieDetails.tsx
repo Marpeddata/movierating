@@ -4,15 +4,6 @@ import CreateReview from "./CreateReview";
 
 const MovieDetails = ({ movie }: { movie: Movie }) => {
 
-  console.log("movie id:" + movie.id);
-  console.log("movie title:" + movie.title);
-  console.log("movie year:" + movie.year);
-  console.log("movie genre:" + movie.genre.type);
-  console.log("movie director:" + movie.director);
-  console.log("movie actors:" + movie.actors);
-  console.log("movie description:" + movie.description);
-  console.log("movie reviews:" + movie.reviews);
-
   return (
     <div>
       <Container>
@@ -56,23 +47,7 @@ const MovieDetails = ({ movie }: { movie: Movie }) => {
             </div>
           </Col>
         </Row>
-
-        <Card className="mt-2 mb-4">
-          <h4>Reviews</h4>
-          <Card.Body>
-            <Card.Text className="text-start">
-              {movie.reviews?.map((review, index) => (
-                <div key={index}>
-                  <p className="lead">Username: {review.user.username}</p>
-                  <p className="lead">Date: {review.date}</p>
-                  <p className="lead">Rating: {review.text}</p>
-                  <p className="lead">Text: {review.rating}</p>
-                </div>
-              ))}
-              <CreateReview movie={movie} />
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <CreateReview movie={movie} />
       </Container>
     </div>
   );

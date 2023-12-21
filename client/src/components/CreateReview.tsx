@@ -1,14 +1,25 @@
-import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { Form, Button, Card } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_REVIEW } from "../queries/allQueries";
 import { ReviewInput, Movie } from "../types";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { User } from "../types";
 
 const CreateReview = ({ movie }: { movie: Movie }) => {
   const { user }: { user: User | null } = useContext(AuthContext);
+
+  const [reviewsArray, setReviewsArray] = useState<any[]>();
+
+useEffect(() => {
+  if (movie.reviews){
+    console.log("movie.reviews");
+    console.log(movie.reviews);
+    setReviewsArray(movie.reviews);
+  }
+}, [reviewsArray]);
+
   function handleAddReview(e: any) {
     e.preventDefault();
     addReview({
@@ -17,8 +28,17 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
         date: reviewObj.date,
         text: reviewObj.text,
         movie: movie.id,
-        user: user.id,
+        user: user!.id,
       },
+    });
+   console.log("user!.username");
+   console.log(user!.username);
+    reviewsArray?.push({
+      rating: reviewObj.rating,
+      date: reviewObj.date,
+      text: reviewObj.text,
+      movie: movie.id,
+      user: user!.username,
     });
     setReviewObj({
       rating: NaN,
@@ -37,7 +57,26 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
 
   return (
     <div>
+
       <h2>Add Review</h2>
+
+      <Card className="mt-2 mb-4">
+          <h4>Reviews</h4>
+          <Card.Body>
+            <Card.Text className="text-start">
+              {reviewsArray?.map((review, index) => (
+                <div key={index}>
+                  <p className="lead">Username: {review.user.username}</p>
+                  <p className="lead">Date: {review.date}</p>
+                  <p className="lead">Rating: {review.text}</p>
+                  <p className="lead">Text: {review.rating}</p>
+                </div>
+              ))}
+              
+            </Card.Text>
+          </Card.Body>
+        </Card>
+
       <Form
         onSubmit={(e) => {
           handleAddReview(e);
@@ -55,7 +94,7 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
         />
         <br />
         <input
-          type="text"
+          type="date"
           name="date"
           placeholder="date"
           value={reviewObj.date}
