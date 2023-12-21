@@ -208,6 +208,7 @@ const SEND_REQUEST = gql`
 const GET_ALL_REQUESTS = gql`
   query Requests {
     requests {
+      id
       title
       year
       director
@@ -256,6 +257,12 @@ const ADD_REVIEW = gql`
   }
 `;
 
+const DELETE_REQUEST = gql`
+  mutation DeleteRequest($deleteRequestId: ID!) {
+    deleteRequest(id: $deleteRequestId)
+  }
+`;
+
 export {
   GET_ALL_MOVIES,
   GET_MOVIE_BY_ID,
@@ -267,6 +274,7 @@ export {
   ADD_REVIEW,
   ADD_USER,
   LOGIN_USER,
+  DELETE_REQUEST,
 };
 
 // export { GET_USERS, GET_USER, ADD_USER };
