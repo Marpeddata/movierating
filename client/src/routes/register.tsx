@@ -41,6 +41,7 @@ const [registerUser, { loading }] = useMutation(ADD_USER, {
     variables: {
         username: values.username,
         password: values.password,
+        confirmPassword: values.confirmPassword,
     }
 })
 
@@ -54,10 +55,9 @@ const [registerUser, { loading }] = useMutation(ADD_USER, {
         <div className="text-end">
           <input type="text" className="form-control-sm mx-1" id="username" name="username" placeholder="Brugernavn" />
           <input type="password" className="form-control-sm mb-2" id="password" name="password" placeholder="Adgangskode" />
-          {/* confirmPassword - Currently not in use, gotta update mutation to take this in, and handle match varification in backend */}
           <input type="password" className="form-control-sm mb-2" id="confirmPassword" name="confirmPassword" placeholder="Gentag Adgangskode" />
 
-          <br />
+          <br/>
           <button type="submit" className="btn btn-sm greenBg whiteTekst mx-1" onClick={onSubmit}>Register</button>
 
         </div>
