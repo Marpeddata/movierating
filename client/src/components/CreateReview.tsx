@@ -6,6 +6,7 @@ import { ReviewInput, Movie } from "../types";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { User } from "../types";
+import { log } from "console";
 
 const CreateReview = ({ movie }: { movie: Movie }) => {
   const { user }: { user: User | null } = useContext(AuthContext);
@@ -85,63 +86,70 @@ const CreateReview = ({ movie }: { movie: Movie }) => {
             </Card.Body>
           </Card>
         </Col>
+
         <Col>
-          <Card className="mt-2 mb-4">
-            <p className="lead">Create review</p>
-            <Form
-              onSubmit={(e) => {
-                handleAddReview(e);
-              }}
-            >
-              <Form.Group className="mb-3" controlId="formBasicDirector">
-                <Form.Control
-                  type="number"
-                  max={10}
-                  min={0}
-                  placeholder="Enter rating"
-                  value={reviewObj.rating}
-                  onChange={(evt) => {
-                    setReviewObj({
-                      ...reviewObj,
-                      rating: parseInt(evt.target.value),
-                    });
-                  }}
-                />
-              </Form.Group>
+          {user ? (
+            <Card className="mt-2 mb-4">
+              <p className="lead">Create review</p>
+              <Form
+                onSubmit={(e) => {
+                  handleAddReview(e);
+                }}
+              >
+                <Form.Group className="mb-3" controlId="formBasicDirector">
+                  <Form.Control
+                    type="number"
+                    max={10}
+                    min={0}
+                    placeholder="Enter rating"
+                    value={reviewObj.rating}
+                    onChange={(evt) => {
+                      setReviewObj({
+                        ...reviewObj,
+                        rating: parseInt(evt.target.value),
+                      });
+                    }}
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicDirector">
-                <Form.Control
-                  type="date"
-                  placeholder="Enter date"
-                  value={reviewObj.date}
-                  onChange={(evt) => {
-                    setReviewObj({ ...reviewObj, date: evt.target.value });
-                  }}
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicDirector">
+                  <Form.Control
+                    type="date"
+                    placeholder="Enter date"
+                    value={reviewObj.date}
+                    onChange={(evt) => {
+                      setReviewObj({ ...reviewObj, date: evt.target.value });
+                    }}
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicDirector">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter comment"
-                  value={reviewObj.text}
-                  onChange={(evt) => {
-                    setReviewObj({ ...reviewObj, text: evt.target.value });
-                  }}
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicDirector">
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter comment"
+                    value={reviewObj.text}
+                    onChange={(evt) => {
+                      setReviewObj({ ...reviewObj, text: evt.target.value });
+                    }}
+                  />
+                </Form.Group>
 
-              <Button type="submit" variant="success" onClick={handleAddReview}>
-                Add Review
-              </Button>
+                <Button
+                  type="submit"
+                  variant="success"
+                  onClick={handleAddReview}
+                >
+                  Add Review
+                </Button>
 
-              {showAlert ? (
-                <div className="alert alert-success mt-4" role="alert">
-                  Your review has been added!
-                </div>
-              ) : null}
-            </Form>
-          </Card>
+                {showAlert ? (
+                  <div className="alert alert-success mt-4" role="alert">
+                    Your review has been added!
+                  </div>
+                ) : null}
+              </Form>
+            </Card>
+          ) : null}
         </Col>
       </Row>
     </div>
