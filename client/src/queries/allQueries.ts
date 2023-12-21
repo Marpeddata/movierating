@@ -37,27 +37,25 @@ import { gql } from "@apollo/client";
 //   }
 // `;
 const ADD_USER = gql`
-mutation CreateUser($username: String, $password: String) {
-  createUser(username: $username, password: $password) {
-    id
-    username
-    role
-    token
+  mutation CreateUser($username: String, $password: String) {
+    createUser(username: $username, password: $password) {
+      id
+      username
+      role
+      token
+    }
   }
-}
 `;
 
-
-
 const LOGIN_USER = gql`
-mutation loginUser($username: String, $password: String) {
-  loginUser(username: $username, password: $password) {
-    id
-    username
-    role
-    token
+  mutation loginUser($username: String, $password: String) {
+    loginUser(username: $username, password: $password) {
+      id
+      username
+      role
+      token
+    }
   }
-}
 `;
 const GET_ALL_MOVIES = gql`
   query Movies {
@@ -215,32 +213,43 @@ const GET_ALL_REQUESTS = gql`
 `;
 
 const ADD_REVIEW = gql`
-mutation CreateReview($rating: Int!, $date: String!, $text: String!, $movie: ID!, $user: ID!) {
-  createReview(rating: $rating, date: $date, text: $text, movie: $movie, user: $user) {
-    id
-    rating
-    date
-    text
-    movie {
+  mutation CreateReview(
+    $rating: Int!
+    $date: String!
+    $text: String!
+    $movie: ID!
+    $user: ID!
+  ) {
+    createReview(
+      rating: $rating
+      date: $date
+      text: $text
+      movie: $movie
+      user: $user
+    ) {
       id
-      title
-      year
-      director
-      description
-      actors
-      genre {
+      rating
+      date
+      text
+      movie {
         id
-        type
+        title
+        year
+        director
+        description
+        actors
+        genre {
+          id
+          type
+        }
+      }
+      user {
+        id
+        username
       }
     }
-    user {
-      id
-      username
-    }
   }
-}
 `;
-
 
 export {
   GET_ALL_MOVIES,
@@ -252,7 +261,7 @@ export {
   GET_ALL_REQUESTS,
   ADD_REVIEW,
   ADD_USER,
-  LOGIN_USER
+  LOGIN_USER,
 };
 
 // export { GET_USERS, GET_USER, ADD_USER };

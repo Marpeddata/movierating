@@ -1,10 +1,14 @@
 import { Container, Table } from "react-bootstrap";
 import { GET_ALL_REQUESTS } from "../queries/allQueries";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { Request } from "../types";
 
 const AdminRequests = () => {
   const { loading, error, data } = useQuery(GET_ALL_REQUESTS);
+
+  const [delteRequest, deleteRequestResponse] = useMutation(DELETE_REQUEST, {
+    refetchQueries: [{ query: GET_ALL_REQUESTS }],
+  });
 
   console.log("data", data);
 
