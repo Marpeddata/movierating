@@ -27,9 +27,7 @@
 
 11: Return to the frontend running in your browser and click the 'Add Movie' tab. Here you will find the genre list in the dropdown menu.
 
-12: Now add movies of your choice and assign a fitting genre. 
-
-      *There is a file in the api directory called movies.json where you can "steal" movie info and urls for images if you like. You cannot run it the same way as genres.json, because the genre object id's will not match.
+12: Now add movies of your choice and assign a fitting genre. *There is a file in the api directory called movies.json where you can "steal" movie info and urls for images if you like. You cannot run it the same way as genres.json, because the genre object id's will not match.
 
 13: You can see the added movies by navigating to the frontpage called 'MovieRating'
 
