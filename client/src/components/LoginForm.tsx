@@ -81,7 +81,7 @@ const LoginForm = (props: any) => {
                   {errorL !== "" ?
                      
                       <div
-                        className="alert alert-danger"
+                        className="mt-4 alert alert-danger"
                         role="alert"
                       >
                         incorrect username or password

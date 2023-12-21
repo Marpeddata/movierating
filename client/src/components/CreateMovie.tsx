@@ -12,6 +12,7 @@ const CreateMovie = () => {
   //get all genres
   const [genre, setGenre] = useState<Genre[]>([]);
   const [chosenGenre, setChosenGenre] = useState<Genre["type"]>("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const genreQuery = useQuery(GET_ALL_GENRES, {
     onCompleted: (data) => {
@@ -43,6 +44,7 @@ const CreateMovie = () => {
       actors: [],
       genre: "",
     });
+    setShowAlert(true);
   }
 
   const [movieObj, setMovieObj] = useState<Movie>({
@@ -195,6 +197,11 @@ const CreateMovie = () => {
                     >
                       Add movie
                     </Button>
+                    {showAlert ? (
+                <div className="alert alert-success mt-4 text-center" role="alert">
+                  Your request has been sent!
+                </div>
+              ) : null}
                   </div>
                 </form>
               </div>
