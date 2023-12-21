@@ -1,5 +1,6 @@
 type Movie = {
   id?: string;
+  url: string;
   title: string;
   year: number;
   director: string;

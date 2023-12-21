@@ -2,6 +2,7 @@ const typeDefs = `#graphql
 
     type Movie {
         id: ID!
+        url: String!
         title: String!
         year: Int!
         director: String!
@@ -64,7 +65,7 @@ type Query {
 
     
 type Mutation {
-    createMovie(title: String!, year: Int!, director: String!, description: String!, actors: [String!]!, genre: ID!): Movie
+    createMovie(url: String!, title: String!, year: Int!, director: String!, description: String!, actors: [String!]!, genre: ID!): Movie
     createReview(rating: Int!, date: String!, text: String!, movie: ID!, user: ID!): Review
     deleteMovie(id: ID!): Boolean
     createRequest(title: String!, year: Int!, director: String!, comment: String!, username: String!): Request

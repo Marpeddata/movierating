@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 
 type Movie = {
   id: ObjectId;
+  url: string;
   title: string;
   year: number;
   director: string;

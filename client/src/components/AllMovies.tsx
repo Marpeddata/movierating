@@ -52,9 +52,7 @@ const AllMovies = () => {
                                 <Card.Img
                                   style={{ width: "80%", height: "60%" }}
                                   variant="top"
-                                  src={
-                                    "https://c8.alamy.com/comp/2JH2MYR/robbinsposter-the-shawshank-redemption-1994-2JH2MYR.jpg"
-                                  }
+                                  src={movieslice.url}
                                 />
 
                                 <div className="text-center mt-4 ">

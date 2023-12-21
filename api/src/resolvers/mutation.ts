@@ -15,6 +15,7 @@ export default {
     console.log(args);
     const newMovie = new MovieModel({
       id: new ObjectId(),
+      url: args.url,
       title: args.title,
       year: args.year,
       director: args.director,

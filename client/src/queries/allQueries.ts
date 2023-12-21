@@ -63,6 +63,7 @@ const GET_ALL_MOVIES = gql`
   query Movies {
     movies {
       id
+      url
       title
       year
       director
@@ -90,6 +91,7 @@ const GET_MOVIE_BY_ID = gql`
   query Movie($movieId: ID!) {
     movie(id: $movieId) {
       id
+      url
       title
       year
       director
@@ -128,6 +130,7 @@ const GET_ALL_GENRES = gql`
 
 const ADD_MOVIE = gql`
   mutation CreateMovie(
+    $url: String!
     $title: String!
     $year: Int!
     $director: String!
@@ -136,6 +139,7 @@ const ADD_MOVIE = gql`
     $genre: ID!
   ) {
     createMovie(
+      url: $url
       title: $title
       year: $year
       director: $director
@@ -163,6 +167,7 @@ const GET_REVIEW_BY_USER_ID = gql`
         text
         movie {
           id
+          url
           title
           year
           director
