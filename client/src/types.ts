@@ -25,7 +25,7 @@ type Genre = {
 type Review = {
   id: string;
   rating: string;
-  date: String;
+  date: string;
   text: string;
   movie: Movie;
   user: User;
@@ -42,8 +42,8 @@ type Request = {
 
 type ReviewInput = {
   rating: number;
-  date: String;
+  date: string;
   text: string;
 };
 
-export type { Movie, User, Genre, Review, ReviewInput, Request };
+export type { Movie, User, Genre, Review, ReviewInput };

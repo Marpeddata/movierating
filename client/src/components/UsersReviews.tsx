@@ -1,18 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { GET_REVIEW_BY_USER_ID } from "../queries/allQueries";
 import "../styles/App.css";
-import { Review } from "../types";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Review, User } from "../types";
+import { Card, Row, Col } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 
 const UsersReviews = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user }: { user: User | null } = useContext(AuthContext);
   const { loading, error, data } = useQuery(GET_REVIEW_BY_USER_ID, {
-    variables: { userId: user.id },
+    variables: { userId: user!.id },
   });
 
   if (loading) {
