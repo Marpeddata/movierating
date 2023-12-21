@@ -45,34 +45,29 @@ const typeDefs = `#graphql
         username: String!
     }
     
-    
-type Query {
-    movies: [Movie!]!
-    genres: [Genre!]!
-    reviews: [Review!]!
-    requests: [Request!]!
+    type Query {
+        movies: [Movie!]!
+        genres: [Genre!]!
+        reviews: [Review!]!
+        requests: [Request!]!
 
-    movie(id: ID!): Movie
-    review(id: ID!): Review
-    genre(id: ID!): Genre
+        movie(id: ID!): Movie
+        review(id: ID!): Review
+        genre(id: ID!): Genre
 
-    users: [User!]!
-    user(id: ID!): User
-
+        users: [User!]!
+        user(id: ID!): User
     }
-
-
-
     
-type Mutation {
-    createMovie(url: String!, title: String!, year: Int!, director: String!, description: String!, actors: [String!]!, genre: ID!): Movie
-    createReview(rating: Int!, date: String!, text: String!, movie: ID!, user: ID!): Review
-    deleteMovie(id: ID!): Boolean
-    createRequest(title: String!, year: Int!, director: String!, comment: String!, username: String!): Request
-    deleteRequest(id: ID!): Boolean
-    createUser(username: String, password: String): User
-    loginUser(username: String, password: String): User
-}
+    type Mutation {
+        createMovie(url: String!, title: String!, year: Int!, director: String!, description: String!, actors: [String!]!, genre: ID!): Movie
+        createReview(rating: Int!, date: String!, text: String!, movie: ID!, user: ID!): Review
+        deleteMovie(id: ID!): Boolean
+        createRequest(title: String!, year: Int!, director: String!, comment: String!, username: String!): Request
+        deleteRequest(id: ID!): Boolean
+        createUser(username: String, password: String): User
+        loginUser(username: String, password: String): User
+    }
 `;
 
 export default typeDefs;

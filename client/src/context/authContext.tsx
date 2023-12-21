@@ -1,4 +1,4 @@
-import React, {useReducer, createContext} from 'react';
+import {useReducer, createContext} from 'react';
 
 import { jwtDecode } from "jwt-decode"
 import { JwtPayload } from 'jsonwebtoken';
@@ -15,7 +15,6 @@ if(localStorage.getItem('token')) {
     } else {
         initialState.user = decodedToken;
     }
-    
 }
 
 const AuthContext = createContext({

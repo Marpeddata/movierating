@@ -12,7 +12,6 @@ const LoginForm = (props: any) => {
   const [errorL, setErrorL] = useState("");
 
   const loginUserCallback = () => {
-    
     loginUser();
   };
 
@@ -20,7 +19,6 @@ const LoginForm = (props: any) => {
     username: "",
     password: "",
   });
-
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(proxy, { data: { loginUser: userData } }) {
@@ -36,8 +34,6 @@ const LoginForm = (props: any) => {
       password: values.password,
     },
   });
-
-  
 
   return (
     <div>
@@ -76,10 +72,7 @@ const LoginForm = (props: any) => {
                       Login
                     </Button>
                   </div>
-                  
-                  
                   {errorL !== "" ?
-                     
                       <div
                         className="mt-4 alert alert-danger"
                         role="alert"

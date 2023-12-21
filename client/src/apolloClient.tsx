@@ -13,7 +13,6 @@ const authLink = setContext((_, { headers }) => {
               authorization: localStorage.getItem('token') || ""
         }
     }
-
 });
 
 const client = new ApolloClient({

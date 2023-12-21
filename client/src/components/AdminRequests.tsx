@@ -3,7 +3,6 @@ import { GET_ALL_REQUESTS, DELETE_REQUEST } from "../queries/allQueries";
 import { useQuery, useMutation } from "@apollo/client";
 import { Request } from "../types";
 import { useState } from "react";
-import gql from "graphql-tag";
 
 const AdminRequests = () => {
   const { loading, error, data } = useQuery(GET_ALL_REQUESTS);

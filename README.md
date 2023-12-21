@@ -29,6 +29,8 @@
 
 12: Now add movies of your choice and assign a fitting genre. 
 
+      *There is a file in the api directory called movies.json where you can "steal" movie info and urls for images if you like. You cannot run it the same way as genres.json, because the genre object id's will not match.
+
 13: You can see the added movies by navigating to the frontpage called 'MovieRating'
 
 13: Log out again and register a new user (it by default be a regular user - non admin). With this user you can now view the films that the admin has added. You can create a review to a given movie by clicking on the specific movie navigating from the front page. You will be able to see your user's review under 'Reviews' in the nav bar. 

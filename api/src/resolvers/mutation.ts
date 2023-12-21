@@ -11,6 +11,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export default {
+
   createMovie: async (_parent: any, args: Movie) => {
     console.log(args);
     const newMovie = new MovieModel({
@@ -33,6 +34,7 @@ export default {
     await newMovie.save();
     return newMovie.populate("genre");
   },
+
   createReview: async (_parent: any, args: Review) => {
     console.log(args);
     const newReview = new ReviewModel({
@@ -91,12 +93,10 @@ export default {
       return false;
     }
   },
-  createUser: async (_: any, args: User) => {
-   
-    const oldUser = await UserModel.findOne({ username: args.username });
 
+  createUser: async (_: any, args: User) => {
+    const oldUser = await UserModel.findOne({ username: args.username });
     if (oldUser) {
-      //needs error handling
       console.log("user already exists");
     }
 
@@ -106,18 +106,16 @@ export default {
       id: new ObjectId(),
       username: args.username,
       password: encryptedPassword,
-      
-      
     });
 
     const token = jwt.sign({ id: newUser.id, username: newUser.username, role: newUser.role }, process.env.JWT_SECRET!,{expiresIn: "2h"})
-
 
     newUser.token = token;
     console.log(newUser);
     const res = await newUser.save();
     return res.populate("reviews");
   },
+
   loginUser: async (_: any, args: User) => {
     const user = await UserModel.findOne({ username: args.username });
 
@@ -125,15 +123,9 @@ export default {
       const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, process.env.JWT_SECRET!,{expiresIn: "2h"})
       user.token = token;
       UserModel.findOneAndUpdate({ username: args.username });
-      
-
       return user;
     } else {
-      //needs error handling
       console.log("incorrect username or password");
     }
-
-    
-
   }
 };

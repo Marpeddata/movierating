@@ -1,41 +1,5 @@
 import { gql } from "@apollo/client";
 
-// const GET_USERS = gql`
-// query GET_ALL_USERS{
-//   users {
-//     id
-//     name
-//     email
-//     address {
-//       street
-//       city
-//     }
-//   }
-// }
-// `;
-
-// const GET_USER = gql`
-// query GET_USER_BY_ID($id:Int){
-//   user(id:$id) {
-//     id
-//     name
-//     email
-//     address {
-//       street
-//       city
-//     }
-//   }
-//   }
-// `;
-
-// const ADD_USER = gql`
-// mutation ADD_USER($name: String!, $email: String){
-//     addUser(name: $name, email: $email) {
-//       id
-//       name
-//     }
-//   }
-// `;
 const ADD_USER = gql`
   mutation CreateUser($username: String, $password: String) {
     createUser(username: $username, password: $password) {
@@ -57,6 +21,7 @@ const LOGIN_USER = gql`
     }
   }
 `;
+
 const GET_ALL_MOVIES = gql`
   query Movies {
     movies {
@@ -276,5 +241,3 @@ export {
   LOGIN_USER,
   DELETE_REQUEST,
 };
-
-// export { GET_USERS, GET_USER, ADD_USER };

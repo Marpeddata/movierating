@@ -11,13 +11,6 @@ import Query from "./resolvers/Query";
 import Mutation from "./resolvers/mutation";
 import typeDefs from "./schema";
 
-
-// interface MyContext {
-//   movies: typeof MovieModel;
-//   reviews: typeof ReviewModel;
-//   genres: typeof GenreModel;
-// }
-
 const DB = process.env.DB_CONNECTION_STRING!;
 
 mongoose

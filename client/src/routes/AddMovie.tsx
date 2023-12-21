@@ -1,4 +1,3 @@
-import React from "react";
 import CreateMovie from "../components/CreateMovie";
 
 const AddMovie = () => {

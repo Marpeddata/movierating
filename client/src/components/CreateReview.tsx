@@ -1,12 +1,11 @@
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_REVIEW, GET_ALL_MOVIES } from "../queries/allQueries";
+import { ADD_REVIEW } from "../queries/allQueries";
 import { ReviewInput, Movie } from "../types";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { User } from "../types";
-import { log } from "console";
 
 const CreateReview = ({ movie }: { movie: Movie }) => {
   const { user }: { user: User | null } = useContext(AuthContext);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_MOVIES } from "../queries/allQueries";
 import "../styles/App.css";

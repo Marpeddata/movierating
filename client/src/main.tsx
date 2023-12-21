@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom'
 import client from './apolloClient';
 import { AuthProvider } from './context/authContext'
 
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <AuthProvider>
     <ApolloProvider client={client}>
@@ -20,5 +19,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ApolloProvider>
   </AuthProvider>,
 )
-
-

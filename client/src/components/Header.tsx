@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { User } from "../types";
 import Nav from "react-bootstrap/Nav";
@@ -73,54 +73,6 @@ const Header = () => {
         </Navbar>
       </ul>
     </div>
-
-    // <ul className="header">
-    //   {!user ? (
-    //     <>
-    //       <li>
-    //         <NavLink to="/">Home</NavLink>
-    //       </li>
-    //       <li>
-    //         <NavLink to="/login">Login</NavLink>
-    //       </li>
-    //       <li>
-    //         <NavLink to="/register">Register</NavLink>
-    //       </li>
-    //     </>
-    //   ) : (
-    //     <>
-    //       <li>
-    //         <NavLink to="/">Home</NavLink>
-    //       </li>
-
-    //       {user.role === "admin" ? (
-    //         <>
-    //           <li>
-    //             <NavLink to="/showRequests">Show requests</NavLink>
-    //           </li>
-    //           <li>
-    //             <NavLink to="/addMovie">Add movie</NavLink>
-    //           </li>
-    //         </>
-    //       ) : (
-    //         <>
-    //           <li>
-    //             <NavLink to="/requestMovie">Request movie</NavLink>
-    //           </li>
-    //           <li>
-    //             <NavLink to="/reviews">Your reviews</NavLink>
-    //           </li>
-    //         </>
-    //       )}
-
-    //       <li>
-    //         <NavLink onClick={onLogout} to="/">
-    //           Logout
-    //         </NavLink>
-    //       </li>
-    //     </>
-    //   )}
-    // </ul>
   );
 };
 

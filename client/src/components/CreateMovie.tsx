@@ -199,7 +199,7 @@ const CreateMovie = () => {
                     </Button>
                     {showAlert ? (
                 <div className="alert alert-success mt-4 text-center" role="alert">
-                  Your request has been sent!
+                  This movie has been added!
                 </div>
               ) : null}
                   </div>

@@ -47,4 +47,4 @@ type ReviewInput = {
   text: string;
 };
 
-export type { Movie, User, Genre, Review, ReviewInput };
+export type { Movie, User, Genre, Review, Request, ReviewInput };
