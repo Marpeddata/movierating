@@ -16,18 +16,17 @@ const AllMovies = () => {
   const { user }: { user: User | null } = useContext(AuthContext);
   return (
     <>
-      <h1>Home Page</h1>
+      <div className="display-6 mt-4">Movie Rating</div>
       {user ? (
         <>
-          <p>Welcome {user.username}</p>
+          <p className="lead mt-3">Welcome {user.username}</p>
         </>
       ) : (
         <>
-          <p>Not logged in yet</p>
+          <p className="lead mt-3">You are not logged in yet</p>
         </>
       )}
       <Container>
-        <h2 className="mt-5 mb-5">All Movies</h2>
         {movies.length > 0 && (
           <>
             {data?.movies.map(

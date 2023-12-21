@@ -3,15 +3,14 @@ import { Movie } from "../types";
 import CreateReview from "./CreateReview";
 
 const MovieDetails = ({ movie }: { movie: Movie }) => {
-
   return (
     <div>
       <Container>
         <Row>
           <Col md={8}>
-            <h3 className="mt-4 mb-3 text-start">
+            <div className="display-6 mt-4 mb-3 text-start">
               {movie.title} ({movie.year})
-            </h3>
+            </div>
             <div className="text-start">
               <p className="lead">Genre: {movie.genre.type}</p>
               <p className="lead">Year: {movie.year}</p>
